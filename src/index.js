@@ -3,9 +3,8 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {BrowserRouter as Router} from 'react-router-dom';
 import {createStore, applyMiddleware} from 'redux';
-import reduxPromise from 'redux-promise';
 import {reducer as formReducer} from 'redux-form';
-
+import reduxPromise from './middleware/redux_promise';
 import rootReducer from './reducers';
 
 import App from './components/app';
