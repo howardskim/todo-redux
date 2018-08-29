@@ -14,3 +14,11 @@ export function getAllListData(){
         //All we are doing is just Setting a string to this type property
     }
 }
+
+export function addItem(item){
+    const response = axios.post(`${BASE_URL}/todos/${API_KEY}`, item);
+    return {
+        type: types.ADD_ITEM,
+        payload: response
+    }
+}
