@@ -6,10 +6,10 @@ import {createStore, applyMiddleware} from 'redux';
 import {reducer as formReducer} from 'redux-form';
 import reduxPromise from './middleware/redux_promise';
 import rootReducer from './reducers';
-
+import think from './middleware/think';
 import App from './components/app';
 
-const store = createStore(rootReducer, {}, applyMiddleware(reduxPromise));
+const store = createStore(rootReducer, {}, applyMiddleware(think, reduxPromise));
 
 ReactDOM.render(
     <Provider store={store}>
