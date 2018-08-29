@@ -22,3 +22,46 @@ export function addItem(item){
         payload: response
     }
 }
+
+export const getSingleItem = (id) => async dispatch => {
+    
+        try {
+            const response = await axios.get(`${BASE_URL}/todos/${id + API_KEY}`);
+            dispatch({
+                type: types.GET_SINGLE_ITEM,
+                payload: response
+            })            
+        } catch(error){
+            dispatch({
+                type: types.LIST_ERROR,
+                error: 'no error found'
+            })
+        }
+}
+
+//use middleware to check if any of our actions is a function... an action cannot be a function right
+
+export function deleteItem(id){
+    return async function (dispatch){
+        try {
+            const response = await axios.delete(`${BASE_URL}/todos/${id + API_KEY}`);
+            console.log('delete worked!')
+            dispatch({
+                type: types.DELETE_ITEM,
+                payload: response
+            })
+        } catch(error){
+            console.log('delete failed')
+            dispatch({
+                type: types.LIST_ERROR,
+                error: 'Failed to delete item'
+            })
+        }
+    }
+}
+
+export function resetSingle(){
+    return {
+        type: types.RESET_SINGLE_VIEW
+    }
+}
